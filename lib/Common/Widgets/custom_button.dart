@@ -5,13 +5,18 @@ import 'package:flutter/src/widgets/framework.dart';
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback ontap;
+  final bool? isLoading;
 
-  const CustomButton({super.key, required this.text, required this.ontap});
+  const CustomButton(
+      {super.key,
+      required this.text,
+      required this.ontap,
+      this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      child: Text(text),
+      child: isLoading! ? const CircularProgressIndicator() : Text(text),
       onPressed: ontap,
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 50),

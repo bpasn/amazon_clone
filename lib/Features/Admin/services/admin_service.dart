@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 ClientService clirentService = ClientService();
 
 class AdminServide {
-  void sellProduct({
+  Future<void> sellProduct({
     required BuildContext context,
     required String name,
     required String description,
@@ -52,8 +52,8 @@ class AdminServide {
           response: res,
           context: context,
           onSuccess: () {
-            showSnackBar(context: context, text: "Product Added Successfully!");
             Navigator.pop(context);
+            showSnackBar(context: context, text: "Product Added Successfully!");
           });
     } catch (e) {
       showSnackBar(context: context, text: e.toString());

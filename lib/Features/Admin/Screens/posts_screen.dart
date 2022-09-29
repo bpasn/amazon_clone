@@ -18,16 +18,17 @@ class _PostScreenState extends State<PostsScreen> {
   @override
   void initState() {
     super.initState();
-    fetchAllProduct();
+    // fetchAllProduct();
   }
 
   fetchAllProduct() async {
     productList = await AdminServide().getAllProduct(context);
-    setState(() {});
+    setState(() => {});
   }
 
   @override
   Widget build(BuildContext context) {
+    print(productList.toString());
     return productList == null
         ? const Loader()
         : Scaffold(

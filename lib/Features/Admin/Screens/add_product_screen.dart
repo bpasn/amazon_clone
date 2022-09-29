@@ -19,6 +19,7 @@ class AddProductScreen extends StatefulWidget {
 
 class _AddProductScreenState extends State<AddProductScreen> {
   final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
   final TextEditingController productNameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
@@ -43,14 +44,18 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   void sellProduct() {
     if (_formKey.currentState!.validate() && images.isNotEmpty) {
-      AdminServide().sellProduct(
-          context: context,
-          name: productNameController.text,
-          description: descriptionController.text,
-          price: double.parse(priceController.text),
-          quantity: double.parse(quantityController.text),
-          category: category,
-          images: images);
+      try {
+        AdminServide().sellProduct(
+            context: context,
+            name: productNameController.text,
+            description: descriptionController.text,
+            price: double.parse(priceController.text),
+            quantity: double.parse(quantityController.text),
+            category: category,
+            images: images);
+      } catch (e) {
+        showSnackBar(context: context, text: e.toString());
+      }
     }
   }
 
@@ -158,7 +163,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                CustomButton(text: "Sell", ontap: sellProduct),
+                CustomButton(
+                    isLoading: isLoading, text: "Sell", ontap: sellProduct),
               ],
             ),
           ),
