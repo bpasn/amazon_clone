@@ -13,25 +13,24 @@ class PostsScreen extends StatefulWidget {
 }
 
 class _PostScreenState extends State<PostsScreen> {
-  List<Product>? productList;
+  List<Product>? productList = [];
   void navigationToAddProduct() => Navigator.pushNamed(context, '/add-product');
   @override
   void initState() {
     super.initState();
-    // fetchAllProduct();
+    fetchAllProduct();
   }
 
   fetchAllProduct() async {
-    productList = await AdminServide().getAllProduct(context);
+    productList= await AdminServide().getAllProduct(context);
     setState(() => {});
   }
 
   @override
   Widget build(BuildContext context) {
-    print(productList.toString());
-    return productList == null
+    return productList == null 
         ? const Loader()
-        : Scaffold(
+        :  productList!.length == 0 ? const Loader() : Scaffold(
             body: GridView.builder(
               itemCount: productList!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

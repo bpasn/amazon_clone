@@ -58,51 +58,30 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: Builder(builder: (BuildContext _) {
-        return Scaffold(
+      home: Builder(
+        builder: (BuildContext _) {
+          return Scaffold(
             key: _scaffoldKey,
             body: FutureBuilder<bool>(
-                future: getUser(_),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  print('snapshot.data => ${snapshot.data}');
-                  if (snapshot.connectionState == ConnectionState.done &&
-                      snapshot.data &&
-                      Provider.of<UserProvider>(context)
-                          .user
-                          .token
-                          .isNotEmpty) {
-                    return Provider.of<UserProvider>(context).user.type ==
-                            'user'
-                        ? const BottomBar()
-                        : const AdminScreen();
-                  } else if (snapshot.connectionState == ConnectionState.done &&
-                      snapshot.hasData) {
-                    return const AuthScreen();
-                  } else {
-                    print('else');
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                })
-            // FutureBuilder(
-            //   future: authService.getUserDetail(_),
-            //   builder: (_, snapshot) {
-            //     if (snapshot.connectionState == ConnectionState.done) {
-            //       return Provider.of<UserProvider>(context).user.token.isNotEmpty
-            //           ? Provider.of<UserProvider>(context).user.type == 'user'
-            //               ? const BottomBar()
-            //               : const AdminScreen()
-            //           : const AuthScreen();
-            //     }
-            //     return const Center(child: CircularProgressIndicator());
-            //   },
-            // ),
-            );
-      }),
-      // Provider.of<UserProvider>(context).user.token.isNotEmpty
-      //     ? Provider.of<UserProvider>(context).user.type == 'user'
-      //         ? const BottomBar()
-      //         : const AdminScreen()
-      //     : const AuthScreen(),
+              future: getUser(_),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.done &&
+                    snapshot.data &&
+                    Provider.of<UserProvider>(context).user.token.isNotEmpty) {
+                  return Provider.of<UserProvider>(context).user.type == 'user'
+                      ? const BottomBar()
+                      : const AdminScreen();
+                } else if (snapshot.connectionState == ConnectionState.done &&
+                    snapshot.hasData) {
+                  return const AuthScreen();
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

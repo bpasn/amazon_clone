@@ -39,7 +39,7 @@ route.post('/signin', async (req, res) => {
         const isMatch = await bcryptjs.compare(password, user.password)
         if (!isMatch) return res.status(400).json({ msg: 'Incorrect password!' }).status(400)
 
-        const token = jwt.sign({ id: user._id }, 'passwordKey')
+        const token = jwt.sign({ id: user._id }, 'passwordKey',{expiresIn:"3s"})
         res.status(200).json({ token, ...user._doc })
 
     } catch (error) {
@@ -59,7 +59,6 @@ route.get('/token', async (req, res) => {
 
         const user = await User.findById(verify.id);
         if (!user) return res.json(false)
-        console.log(user)
         res.json(true)
     } catch (error) {
         res.status(500).json({ error: error.message })

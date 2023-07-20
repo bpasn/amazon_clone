@@ -1,10 +1,7 @@
 import 'package:amasona_clone/Constants/global_variables.dart';
 import 'package:amasona_clone/Features/Account/Screen/account_screen.dart';
 import 'package:amasona_clone/Features/home/Screens/home_screen.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -84,11 +81,11 @@ class _BottomBarState extends State<BottomBar> {
                         width: bottomBorderWidtd),
                   ),
                 ),
-                child: Badge(
-                  elevation: 0,
-                  badgeContent: const Text('2'),
-                  badgeColor: Colors.white,
-                  child: const Icon(Icons.shopping_cart_outlined),
+                child: const Badge(
+                  // elevation: 0,
+                  // badgeContent: Text('2'),
+                  // badgeColor: Colors.white,
+                  child: Icon(Icons.shopping_cart_outlined),
                 ),
               ),
               label: 'account'),

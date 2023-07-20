@@ -99,9 +99,9 @@ class AuthService {
         prefs.setString('x-auth-token', '');
       }
       // ignore: avoid_print
-      print("token : $token");
       // ignore: unused_local_variable
       http.Response res = await client.get(url: '/api/token', token: token);
+
       http.Response detailUser = await client.get(url: '/api', token: token);
       var userProvider = Provider.of<UserProvider>(context, listen: false);
       userProvider.setUser(detailUser.body);

@@ -61,11 +61,15 @@ class AdminServide {
   }
 
   Future<List<Product>> getAllProduct(BuildContext context) async {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    List<Product> productList = [];
+      List<Product> productList = [];
+      print("RESPONSE DATA LIST :");
+
     try {
+      print("RESPONSE DATA LIST :");
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
       http.Response res = await clirentService.get(
           url: '/admin-get-allproduct', token: userProvider.user.token);
+
       httpErrorHander(
           response: res,
           context: context,

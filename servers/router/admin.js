@@ -21,9 +21,10 @@ adminRoute.post('/admin-add-product', adminMiddleweres, async (req, res) => {
     }
 })
 adminRoute.get('/admin-get-allproduct', adminMiddleweres, async (req, res) => {
+    console.log("product")
+
     try {
-        const product = await Product.find({});
-        console.log(product)
+        const product = await Product.find();
         setTimeout(() => {
             res.json(product).status(200)
         }, 2000);

@@ -1,6 +1,5 @@
 import 'package:amasona_clone/Features/Admin/Screens/posts_screen.dart';
 import 'package:amasona_clone/Features/Admin/widgets/app_bar_widget.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 import '../../../Constants/global_variables.dart';
@@ -93,9 +92,9 @@ class _AdminScreenState extends State<AdminScreen> {
                   ),
                 ),
                 child: Badge(
-                  elevation: 0,
-                  badgeContent: const Text('2'),
-                  badgeColor: Colors.white,
+                  // elevation: 0,
+                  // badgeContent: const Text('2'),
+                  // badgeColor: Colors.white,
                   child: const Icon(Icons.all_inbox_outlined),
                 ),
               ),
